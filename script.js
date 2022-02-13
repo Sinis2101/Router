@@ -5,6 +5,7 @@ let app_div = document.getElementById('app');
 function home() {
     let div = document.createElement('div');
     let link = document.createElement('a');
+
     link.href = '#/about';
     link.innerText = 'About';
 
@@ -12,11 +13,18 @@ function home() {
     div.appendChild(link);
 
     app_div.appendChild(div);
+
+    if (reload) {
+        reload = false;
+    } else {
+        reload = true;
+    }
 };
 
 function about() {
     let div = document.createElement('div');
     let link = document.createElement('a');
+
     link.href = '#/';
     link.innerText = 'Home';
 
@@ -24,6 +32,12 @@ function about() {
     div.appendChild(link);
 
     app_div.appendChild(div);
+
+    if (reload) {
+        reload = false;
+    } else {
+        reload = true;
+    }
 };
 
 function route(path, template) {
@@ -67,5 +81,11 @@ function router(evt) {
     route();
 };
 
+function reload() {
+    location.reload();
+    return;
+}
+
+window.addEventListener('hashchange', reload);
 window.addEventListener('load', router);
 window.addEventListener('hashchange', router);
